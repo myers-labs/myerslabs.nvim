@@ -6,7 +6,7 @@ describe("myerslabs", function()
     package.loaded["myerslabs"] = nil
     package.loaded["myerslabs.palette"] = nil
     package.loaded["myerslabs.highlights"] = nil
-    
+
     myerslabs = require("myerslabs")
   end)
 
@@ -32,7 +32,7 @@ describe("myerslabs", function()
     it("returns colors for dark mode", function()
       vim.o.background = "dark"
       local colors = palette.get()
-      
+
       assert.is_string(colors.bg)
       assert.is_string(colors.fg)
       assert.is_string(colors.accent)
@@ -42,7 +42,7 @@ describe("myerslabs", function()
     it("returns colors for light mode", function()
       vim.o.background = "light"
       local colors = palette.get()
-      
+
       assert.is_string(colors.bg)
       assert.is_string(colors.fg)
       assert.is_string(colors.accent)
@@ -52,10 +52,10 @@ describe("myerslabs", function()
     it("returns different backgrounds for light/dark", function()
       vim.o.background = "dark"
       local dark_colors = palette.get()
-      
+
       vim.o.background = "light"
       local light_colors = palette.get()
-      
+
       assert.is_not_equal(dark_colors.bg, light_colors.bg)
       assert.is_not_equal(dark_colors.fg, light_colors.fg)
     end)

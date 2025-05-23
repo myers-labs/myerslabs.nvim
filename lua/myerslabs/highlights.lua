@@ -2,7 +2,7 @@ local M = {}
 
 function M.get()
   local palette = require("myerslabs.palette").get()
-  
+
   return {
     -- Core vim highlights
     Normal = { fg = palette.fg, bg = palette.bg },
@@ -307,4 +307,3 @@ function M.get()
 end
 
 return M
-
