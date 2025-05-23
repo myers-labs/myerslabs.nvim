@@ -1,0 +1,12 @@
+[indentation]
+type = "Spaces"
+width = 2
+
+[line_endings]
+type = "Unix"
+
+[layout]
+column_width = 120
+
+[sort_requires]
+enabled = true

@@ -1,0 +1,29 @@
+# Lua
+*.luac
+luac.out
+
+# Test artifacts
+tests/fixtures/
+.busted_output
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Luarocks
+.luarocks/
+luarocks.lock
+
+# Build artifacts
+build/
+dist/
+*.log
+/.repro
+/.tests
+/build
+/debug
+/doc/tags

@@ -1,0 +1,10 @@
+return {
+  default = {
+    verbose = true,
+    lua = "luajit",
+    ROOT = "tests/",
+    pattern = "_spec",
+    directory = "tests/",
+    ["exclude-tags"] = "slow",
+  }
+}

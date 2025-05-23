@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        neovim-version: ["stable", "nightly"]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Neovim
+        uses: rhymond/setup-neovim@v1
+        with:
+          neovim-version: ${{ matrix.neovim-version }}
+          
+      - name: Install Lua
+        uses: leafo/gh-actions-lua@v10
+        with:
+          luaVersion: "luajit-2.1.0-beta3"
+          
+      - name: Install Luarocks
+        uses: leafo/gh-actions-luarocks@v4
+        
+      - name: Install dependencies
+        run: |
+          luarocks install busted
+          luarocks install luacheck
+          
+      - name: Run tests
+        run: |
+          make test
+          
+      - name: Lint
+        run: |
+          make lint
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install StyLua
+        uses: JohnnyMorganz/stylua-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --check .
+          
+      - name: Check formatting
+        run: stylua --check .
